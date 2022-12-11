@@ -1,0 +1,150 @@
+body {
+  background-color: #eee;
+  font-family: monospace;
+}
+
+.header-todo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  background-color: white;
+  width: 100%;
+  max-width: 600px;
+  border-radius: 5px;
+  margin: 0 auto;
+  margin-top: 5rem;
+}
+
+.title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  text-align: center;
+}
+
+.home-form {
+  display: flex;
+}
+.home-input {
+  flex: 1;
+  background-color: #eee;
+  border: none;
+  padding: 0.7rem;
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.submit-btn {
+  width: 140px;
+  background-color: purple;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: 550;
+  letter-spacing: 0.1rem;
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0.5rem;
+  border-radius: 5px;
+  background-color: white;
+}
+
+.todo-state {
+  color: #12e612;
+  font-size: 1.5rem;
+  line-height: 0;
+}
+
+.todo-wrapper-align {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.todo-container {
+  margin: 0 auto;
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  max-width: calc(600px + 2rem);
+}
+
+.todo-btn-container {
+  display: flex;
+  gap: 0.5rem;
+}
+.todo-edit,
+.todo-delete {
+  padding: 0;
+  line-height: 0;
+  font-size: 1.2rem;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.todo-delete {
+  color: red;
+}
+
+/* Edit Page */
+
+.edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inline-grid {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  height: 35px;
+  align-items: center;
+}
+
+.back-todo-link {
+  display: block;
+  margin: 0 auto;
+  margin-top: 3rem;
+  padding: 0.8rem 1rem;
+  border-radius: 5px;
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+  background-color: black;
+  width: max-content;
+}
+
+.edit-btn {
+  background-color: purple;
+  color: white;
+  font-weight: 600;
+  border: none;
+  border-radius: 5px;
+  padding: 0.5rem 0;
+  cursor: pointer;
+}
+
+.bold-text {
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.edit-input {
+  padding: 0.2rem 0;
+  font-size: 1.1rem;
+  text-indent: 5px;
+}
+
+.edit-todo-state {
+  margin: 0;
+  margin-right: auto;
+}
