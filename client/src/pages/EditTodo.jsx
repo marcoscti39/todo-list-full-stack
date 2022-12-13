@@ -8,9 +8,9 @@ const EditTodo = () => {
   const { todoID } = useParams();
   const { data, isLoading } = useGetSpecificTodo(todoID);
 
-  const mutationUpdateTodo = useMutation((todoID, updatedTodo) =>
-    updateTodo(todoID, updatedTodo)
-  );
+  const mutationUpdateTodo = useMutation(updateTodo, {
+    onMutate: (variables) => console.log(variables),
+  });
 
   const inputNameRef = useRef(null);
   const isCompletedCheckBoxRef = useRef(null);
@@ -30,8 +30,7 @@ const EditTodo = () => {
       isCompleted: isCompletedCheckBoxRef.current.checked,
     };
 
-    mutationUpdateTodo.mutate(todoID, updatedTodo);
-    console.log(updatedTodo);
+    mutationUpdateTodo.mutate({ todoID, updatedTodo });
   };
   return (
     <section className="edit-section">
@@ -57,7 +56,7 @@ const EditTodo = () => {
             />
           </label>
           <button type="submit" className="edit-btn" onClick={handleUpdateTodo}>
-            Edit
+            {mutationUpdateTodo.isLoading ? "Loading..." : "Edit"}
           </button>
         </form>
       </header>

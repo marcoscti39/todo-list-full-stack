@@ -14,9 +14,15 @@ app.get("/get-todos", async (request, response) => {
 });
 
 app.post("/post-todos", async (request, response) => {
-  await Todos.create(request.body);
-  response.status(200);
-  response.json({ message: "Todo Registered!" });
+  const verifyTodo = await Todos.find({ name: request.body.name });
+
+  if (verifyTodo.length === 0) {
+    await Todos.create(request.body);
+    response.json({ message: "Todo Registered!", status: "fulfilled" });
+
+    return;
+  }
+  response.json({ message: "Todo already exists", status: "rejected" });
 });
 
 app.delete("/delete-todo/:todoID", async (request, response) => {
@@ -33,7 +39,8 @@ app.get("/get-specific-todo/:todoID", async (request, response) => {
 
 app.put("/update-todo/:todoID", async (request, response) => {
   const { todoID } = request.params;
-  console.log(request.body);
+
+  response.json({ message: "Todo Updated", status: "fulfilled" });
   await Todos.updateOne({ _id: todoID }, request.body);
 });
 

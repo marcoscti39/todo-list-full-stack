@@ -1,8 +1,8 @@
 import React, { useRef } from "react";
+import { useEffect } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import Notification from "../components/Notification";
 import TodoItem from "../components/TodoItem";
-import { deleteTodos } from "../fetch/deleteTodos";
 import { postTodo } from "../fetch/postTodos";
 import { useGetTodos } from "../hooks/useGetTodos";
 import { useNotification } from "../hooks/useNotification";
@@ -13,7 +13,7 @@ const Home = () => {
     useNotification();
   const inputRef = useRef(null);
   const queryClient = useQueryClient();
-  const mutationPost = useMutation((todoData) => postTodo(todoData), {
+  const mutationPost = useMutation(postTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("getTodos");
     },
@@ -33,11 +33,17 @@ const Home = () => {
       };
       mutationPost.mutate(newTodo);
 
-      activateNotification("Item Added", "fulfilled");
       inputRef.current.value = "";
+
       return;
     }
   };
+
+  useEffect(() => {
+    if (!mutationPost.isLoading) {
+      activateNotification(mutationPost?.data?.message, mutationPost?.data?.status);
+    }
+  }, [mutationPost.isLoading]);
 
   return (
     <section className="home-section">
